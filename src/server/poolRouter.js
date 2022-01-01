@@ -1,12 +1,14 @@
 const axios = require('axios')
 const express = require('express')
 const router = express.Router()
+const moment = require('moment')
 
 router.get('/pool_block_counter', async (req, res, next) => {
     let poolName = req.query.pool
     let today = new Date();
     let lastMonth = new Date();
-    const prev = new Date(new Date().setDate(0)).toISOString();
+    let prev = moment().subtract(1, "months").startOf("months").toDate().toISOString()
+    // const prev = new Date(new Date().setDate(0)).toISOString();
     const [pyyyy, pmm, pdd] = prev.split(/T|:|-/)
     let dd = String(today.getDate()).padStart(2, '0');
     let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
