@@ -40,20 +40,20 @@ const NormalDistribution = () => {
     <Layout>
       <Typography.Title style={{ fontSize: '1.5rem' }}>Normal Distribution for {poolName.replace('+', ' ')}</Typography.Title>
       <ResponsiveContainer width="100%" height={250}>
-        <AreaChart width={520} height={200} data={newDataSet} >
+        <AreaChart data={newDataSet} >
           <Area dataKey="z" fill="#ffaa15" name='z' animationEasing='ease-in' type='monotone' />
-          <XAxis dataKey="x" allowDuplicatedCategory={false} orientation='top' scale='band' xAxisId={0} />
-          <YAxis />
+          <XAxis dataKey="x" orientation='top' scale='band'/>
+          <YAxis allowDataOverflow={true} type="number"/>
           <Tooltip content={renderToolTip} />
           <CartesianGrid opacity={0.1} vertical={false} />
         </AreaChart>
       </ResponsiveContainer>
       <Typography.Title style={{ fontSize: '1.5rem' }}>Cumulative Normal Distribution for {poolName.replace('+', ' ')}</Typography.Title>
       <ResponsiveContainer width="100%" height={250}>
-        <AreaChart width={520} height={200} data={data} >
+        <AreaChart data={data} >
           <Area dataKey="z" fill="#ffaa15" name='z' animationEasing='ease-in' type='monotone' />
-          <XAxis dataKey="x" allowDuplicatedCategory={false} orientation='bottom' scale='band' xAxisId={0} />
-          <YAxis />
+          <XAxis dataKey="x" orientation='bottom' scale='band' />
+          <YAxis allowDataOverflow={true} type="number" domain={[0, 1]}/>
           <Tooltip labelFormatter={(x) => `${x} blocks`} />
           <CartesianGrid opacity={0.1} vertical={false} />
         </AreaChart>
